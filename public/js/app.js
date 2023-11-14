@@ -16,7 +16,7 @@ window.onload = async () => {
     await configureClient();
 
     updateUI();
-    
+
     const isAuthenticated = await auth0Client.isAuthenticated();
 
     if (isAuthenticated) {
@@ -49,6 +49,14 @@ const login = async () => {
     await auth0Client.loginWithRedirect({
         authorizationParams: {
             redirect_uri: window.location.origin
+        }
+    });
+};
+
+const logout = () => {
+    auth0Client.logout({
+        logoutParams: {
+            returnTo: window.location.origin
         }
     });
 };
